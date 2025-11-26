@@ -4,7 +4,7 @@ namespace Domain.Classes.Common;
 
 public abstract class BaseEntity
 {
-    public required int Id
+    public int Id
     {
         get;
         init
