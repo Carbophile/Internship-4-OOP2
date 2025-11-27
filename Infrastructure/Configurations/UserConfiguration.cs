@@ -19,5 +19,9 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.Property(u => u.Website).HasMaxLength(User.MaxWebsiteLength);
         builder.Property(u => u.Password).IsRequired().HasMaxLength(User.MaxPasswordLength);
+
+        builder.Property(u => u.CreatedAt)
+            .HasDefaultValueSql("CURRENT_TIMESTAMP")
+            .ValueGeneratedOnAdd();
     }
 }
