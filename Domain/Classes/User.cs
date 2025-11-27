@@ -95,7 +95,7 @@ public sealed class User : BaseEntity
         get;
         set
         {
-            if (value != null) Guard.AgainstInvalidString(value, MaxWebsiteLength, nameof(Website));
+            if (value != null) Guard.AgainstInvalidUrl(value, MaxWebsiteLength, nameof(Website));
             UpdateTimestamp();
             field = value;
         }
