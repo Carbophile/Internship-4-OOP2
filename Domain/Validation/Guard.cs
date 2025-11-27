@@ -31,4 +31,13 @@ internal static class Guard
         if (dbl < min || dbl > max)
             throw new DomainValidationException($"{field} must be between {min} and {max}!");
     }
+
+    internal static void AgainstInvalidUrl(string url, int maxLength, string field)
+    {
+        AgainstInvalidString(url, maxLength, field);
+
+        if (!Uri.TryCreate(url, UriKind.Absolute, out var uriResult) ||
+            (uriResult.Scheme != Uri.UriSchemeHttp && uriResult.Scheme != Uri.UriSchemeHttps))
+            throw new DomainValidationException($"{field} must be a valid URL (http or https)!");
+    }
 }
